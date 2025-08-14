@@ -1,0 +1,33 @@
+# Model configuration
+model:
+  name: "scalersnet"  # Model name
+  init_weights: true
+  base_channels: 64  # Base channel count for ScaleRSNet
+
+# Dataset configuration
+dataset:
+  name: "whdld"  # Dataset name: whdld, potsdam, earthvqa
+  in_channels: 3  # Input channels (RGB)
+  num_classes: 6  # Number of output classes
+  num_workers: 4  # Number of data loading workers
+  train: "./data/train"  # Training data path
+  val: "./data/val"      # Validation data path
+  test: "./data/test"    # Test data path
+
+# Training configuration
+training:
+  device: "cuda"  # Training device: cuda or cpu
+  batch_size: 8   # Batch size
+  epochs: 100     # Number of training epochs
+  learning_rate: 0.001  # Initial learning rate
+  optimizer: "adam"     # Optimizer: adam or sgd
+  loss_function: "cross_entropy"  # Loss function: cross_entropy or mse
+  scheduler:
+    type: "step_lr"  # Learning rate scheduler
+    step_size: 30    # Step size for StepLR scheduler
+    gamma: 0.1       # Gamma for StepLR scheduler
+
+# Output configuration
+output:
+  save_dir: "./outputs"  # Directory to save outputs
+  log_dir: "./logs"      # Directory to save logs 
